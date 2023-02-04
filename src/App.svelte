@@ -22,9 +22,9 @@
 
   const margin = {
     top: 0,
-    right: 110,
+    right: 90,
     bottom: 0,
-    left: 180,
+    left: 90,
   };
 
   let width = 400;
@@ -50,7 +50,7 @@
 
 <div class="chart-wrapper" bind:clientWidth={width}>
   <h1>{title}</h1>
-  <svg class="chart" {width} {height} role="figure" tabindex="0">
+  <svg {width} {height} role="figure" tabindex="0">
     <title>{description}</title>
     <g
       transform={`translate(${margin.left}, ${margin.top})`}
@@ -95,25 +95,134 @@
   </svg>
 </div>
 
-<aside>
-  See the source code <a
-    target="_blank"
-    rel="noopener noreferrer"
-    href="https://github.com/seblammers/a11y-bar-tabindex">on github &nearr;</a
-  >.
-</aside>
+<details>
+  <summary>Background Info</summary>
+  <h2 id="what-is-this-">What is this?</h2>
+  <p>
+    A super simple SVG bar-chart made with Svelte and D3. See the source code <a
+      target="_blank"
+      rel="noopener noreferrer"
+      href="https://github.com/seblammers/a11y-bar-tabindex"
+      >on github &nearr;</a
+    >.
+  </p>
+
+  <h2 id="why-">Why?</h2>
+  <p>
+    To try to find ways to make these kinds of charts more
+    accessibility-friendly (keyboard-navigation, screen-readers).
+  </p>
+
+  <h2 id="what-does-the-chart-currently-offer-">
+    What does the chart currently offer?
+  </h2>
+  <ul>
+    <li>the chart as a whole can be selected via keyboard</li>
+    <li>
+      the screen-reader will announce the chart as follows
+      <ul>
+        <li>
+          &quot;Bar-Chart showing the heaviest penguin per species in grams.
+          Group.&quot;
+        </li>
+      </ul>
+    </li>
+    <li>the three bars inside the chart can be selected as well</li>
+    <li>
+      these three bars will be announced as follows
+      <ul>
+        <li>
+          &quot;Bar-Chart bars. Selected. Required selection contains 3
+          items.&quot;
+        </li>
+      </ul>
+    </li>
+    <li>
+      each bar will then be announced as follows
+      <ul>
+        <li>
+          &quot;The heaviest penguin of the Adelie species weighed 4,775 grams.
+          1 of 3.&quot;
+        </li>
+        <li>
+          &quot;The heaviest penguin of the Chinstrap species weighed 4,800
+          grams. 2 of 3.&quot;
+        </li>
+        <li>
+          &quot;The heaviest penguin of the Gentoo species weighed 6,300 grams.
+          3 of 3.&quot;
+        </li>
+      </ul>
+    </li>
+    <li>
+      this offers users the ability to go through the chart step-by-step and go
+      back and forth if desired
+    </li>
+  </ul>
+
+  <h2 id="what-s-the-issue-">What&#39;s the issue?</h2>
+  <p>
+    Currently, this chart uses <code>tabindex = 0</code> to make individual bars
+    inside the chart &quot;tab-able&quot;. This leads to automatic warnings by Svelte
+    that say
+  </p>
+
+  <blockquote>
+    <p>
+      &quot;A11y: noninteractive element cannot have nonnegative tabIndex
+      value&quot;
+    </p>
+  </blockquote>
+  <p>
+    I&#39;m curious to see if there is a better way to <em
+      >achieve the same type of enriched keyboard/screen-reader accessibility</em
+    >
+    while <em>avoiding the a11y warnings</em>.
+  </p>
+
+  <h2>Get involved</h2>
+  <p>
+    Do you know a better way to make this chart keyboard-accessible? Do you have
+    any other things to say? Let me know: <a
+      target="_blank"
+      rel="noopener noreferrer"
+      href="https://vis.social/@seblammers"
+      >https://vis.social/@seblammers &nearr;</a
+    >.
+  </p>
+</details>
+
+<br />
 
 <style>
   .chart-wrapper {
     position: relative;
     width: 100%;
-    max-width: 60ch;
+    max-width: 80ch;
+    padding: 15px;
+    background: #f0f0f0;
+    box-shadow: 2px 2px 6px 0 rgba(0, 0, 0, 0.15);
+    border-radius: 3px;
   }
   rect {
     fill: steelblue;
   }
 
-  h1 {
+  h1,
+  h2 {
     margin-bottom: 0;
+  }
+
+  p {
+    margin-top: 0;
+  }
+
+  blockquote {
+    font-style: italic;
+  }
+
+  details {
+    max-width: 80ch;
+    margin: 3rem 0;
   }
 </style>
