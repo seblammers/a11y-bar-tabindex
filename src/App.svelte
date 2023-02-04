@@ -95,6 +95,14 @@
   </svg>
 </div>
 
+<aside>
+  See the source code <a
+    target="_blank"
+    rel="noopener noreferrer"
+    href="https://github.com/seblammers/a11y-bar-tabindex">on github &nearr;</a
+  >.
+</aside>
+
 <style>
   .chart-wrapper {
     position: relative;
