@@ -24,3 +24,7 @@ Currently, this chart uses `tabindex = 0` to make individual bars inside the cha
 > A11y: noninteractive element cannot have nonnegative tabIndex value 
 
 I'm curious to see if there is a better way to *achieve the same type of enriched keyboard/screen-reader accessibility* while *avoiding the a11y warnings*.
+
+## Get involved
+Do you know a better way to make this chart keyboard-accessible? 
+Do you have any other things to say? Let me know: https://vis.social/@seblammers.
